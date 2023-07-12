@@ -1,6 +1,9 @@
+import 'package:ipssi_bd23_2/controller/messageController.dart';
 import 'package:ipssi_bd23_2/model/utilisateur.dart';
 import 'package:flutter/material.dart';
 import 'package:ipssi_bd23_2/view/background_view.dart';
+
+import '../controller/constante.dart';
 
 class MessagerieView extends StatefulWidget {
   Utilisateur autrePersonne;
@@ -70,7 +73,9 @@ class _MessagerieViewState extends State<MessagerieView> {
                       onPressed: (){
                         if(messageController.text != ""){
                           String message = messageController.text;
-
+                          String authUid = moi.uid;
+                          String receiverUid = widget.autrePersonne.uid;
+                          MessageController().save(message, receiverUid, authUid);
                           setState(() {
                             messageController.text = "";
                           });

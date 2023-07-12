@@ -3,6 +3,7 @@ import 'package:ipssi_bd23_2/controller/user_card.dart';
 import 'package:ipssi_bd23_2/model/utilisateur.dart';
 import 'package:ipssi_bd23_2/view/background_view.dart';
 
+import '../view/messagerie_view.dart';
 import 'constante.dart';
 
 class UserDetailsPopup extends StatefulWidget {
@@ -88,6 +89,17 @@ class _UserDetailsPopupState extends State<UserDetailsPopup> {
                       ),
                     ),
                     actions: [
+                      ElevatedButton.icon(
+                        icon: const Icon(Icons.messenger),
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context){
+                                return MessagerieView(autrePersonne: widget.user);
+                              }
+                          ));
+
+                        },
+                        label: Text("Message")),
                       TextButton(
                           onPressed: () =>
                               setState(() => setUserFavorite(widget.user)),
