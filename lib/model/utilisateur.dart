@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ipssi_bd23_2/controller/constante.dart';
+import 'package:ipssi_bd23_2/controller/user_detail.dart';
 
 class Utilisateur {
   late String uid;
@@ -12,7 +13,7 @@ class Utilisateur {
   String? pseudo;
 
   String get fullName {
-    return "$prenom $nom";
+    return prenom.capitalize() + nom.toUpperCase();
   }
 
   bool isUserFavorite(Utilisateur user) {

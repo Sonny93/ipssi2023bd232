@@ -2,14 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Message {
   late String uid;
-  late DateTime date;
+  late Timestamp date;
   late String expediteur;
   late String destinataire;
   late String message;
 
   Message.vide() {
     uid = "";
-    date = DateTime.now();
+    date = DateTime.now().millisecondsSinceEpoch as Timestamp;
     expediteur = "";
     destinataire = "";
     message = "";
