@@ -90,16 +90,14 @@ class _UserDetailsPopupState extends State<UserDetailsPopup> {
                     ),
                     actions: [
                       ElevatedButton.icon(
-                        icon: const Icon(Icons.messenger),
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(
-                              builder: (context){
-                                return MessagerieView(autrePersonne: widget.user);
-                              }
-                          ));
-
-                        },
-                        label: Text("Message")),
+                          icon: const Icon(Icons.messenger),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return MessagerieView(autrePersonne: widget.user);
+                            }));
+                          },
+                          label: Text("Message")),
                       TextButton(
                           onPressed: () =>
                               setState(() => setUserFavorite(widget.user)),

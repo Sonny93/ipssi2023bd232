@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:ipssi_bd23_2/controller/list_messages.dart';
 import 'package:ipssi_bd23_2/controller/messageController.dart';
@@ -18,9 +20,14 @@ class MessagerieView extends StatefulWidget {
 class _MessagerieViewState extends State<MessagerieView> {
   //variable
   TextEditingController messageController = TextEditingController();
+  final ScrollController _controller = ScrollController();
+
+  void _scrollDown() =>
+      _controller.jumpTo(_controller.position.maxScrollExtent);
 
   @override
   Widget build(BuildContext context) {
+    Timer(const Duration(milliseconds: 500), _scrollDown);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.autrePersonne.fullName),
@@ -39,8 +46,6 @@ class _MessagerieViewState extends State<MessagerieView> {
   }
 
   Widget bodyPage() {
-    List<String> users = List.from([moi.uid, widget.autrePersonne.uid]);
-    print(users);
     return SafeArea(
       bottom: true,
       child: Container(
@@ -49,9 +54,11 @@ class _MessagerieViewState extends State<MessagerieView> {
           children: [
             //message qui va être affiché
             Flexible(
-                child: Container(
+                child: SizedBox(
               height: MediaQuery.of(context).size.height,
-              child: ListMessages(users: users),
+              child: ListMessages(
+                  users: [moi, widget.autrePersonne],
+                  scrollController: _controller),
             )),
             const Divider(
               height: 1.5,
